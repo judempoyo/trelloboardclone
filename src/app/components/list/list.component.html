@@ -1,0 +1,6 @@
+<div class="bg-white rounded-lg shadow-md p-4 w-64" >
+  <h2 class="font-semibold text-lg">{{ list.title }}</h2>
+  <div cdkDropList (cdkDropListDropped)="drop($event)" class="mt-2">
+    <app-card *ngFor="let card of list.cards" [card]="card" cdkDrag></app-card>
+  </div>
+</div>
