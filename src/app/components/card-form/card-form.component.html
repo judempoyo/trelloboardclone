@@ -1,0 +1,6 @@
+<form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+  <input formControlName="title" placeholder="Titre de la carte" class="border rounded p-1 w-full" />
+  <textarea formControlName="description" placeholder="Description de la carte" class="border rounded p-1 w-full mt-2"></textarea>
+  <button type="submit" class="bg-blue-500 text-white rounded-lg py-1 mt-2">Sauvegarder</button>
+  <button type="button" (click)="onCancel()" class="bg-gray-300 text-black rounded-lg py-1 mt-2">Annuler</button>
+</form>

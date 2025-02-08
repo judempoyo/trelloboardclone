@@ -1,0 +1,5 @@
+<form [formGroup]="listForm" (ngSubmit)="onSubmit()">
+  <input formControlName="title" placeholder="Titre de la liste" class="border rounded p-1 w-full" />
+  <button type="submit" class="bg-blue-500 text-white rounded-lg py-1 mt-2">Sauvegarder</button>
+  <button type="button" (click)="onCancel()" class="bg-gray-300 text-black rounded-lg py-1 mt-2">Annuler</button>
+</form>
