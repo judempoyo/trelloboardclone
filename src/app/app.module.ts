@@ -13,6 +13,7 @@ import { CustomButtonComponent } from './components/custom-button/custom-button.
 import { CardFormComponent } from './components/card-form/card-form.component';
 import { ListFormComponent } from './components/list-form/list-form.component';
 import { BoardFormComponent } from './components/board-form/board-form.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BoardFormComponent } from './components/board-form/board-form.component
     CustomButtonComponent,
     CardFormComponent,
     ListFormComponent,
-    BoardFormComponent
+    BoardFormComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

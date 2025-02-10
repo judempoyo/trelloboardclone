@@ -1,6 +1,72 @@
-<form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
-  <input formControlName="title" placeholder="Titre de la carte" class="border rounded p-1 w-full" />
-  <textarea formControlName="description" placeholder="Description de la carte" class="border rounded p-1 w-full mt-2"></textarea>
-  <button type="submit" class="bg-blue-500 text-white rounded-lg py-1 mt-2">Sauvegarder</button>
-  <button type="button" (click)="onCancel()" class="bg-gray-300 text-black rounded-lg py-1 mt-2">Annuler</button>
+<form [formGroup]="cardForm" (ngSubmit)="onSubmit()" class="space-y-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition-all duration-300 ease-in-out">
+  <div>
+    <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Titre de la carte</label>
+    <input
+      id="title"
+      formControlName="title"
+      placeholder="Titre de la carte"
+      class="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      placeholder="Description de la carte"
+      class="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+      rows="4"
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="labels" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Étiquettes</label>
+    <input
+      id="labels"
+      formControlName="labels"
+      placeholder="Étiquettes (séparées par des virgules)"
+      class="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+    />
+  </div>
+
+  <div>
+    <label for="dueDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Date d'échéance</label>
+    <input
+      id="dueDate"
+      formControlName="dueDate"
+      type="date"
+      class="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 transition duration-200 ease-in-out"
+    />
+  </div>
+
+  <div>
+    <label for="priority" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Priorité</label>
+    <select
+      id="priority"
+      formControlName="priority"
+      class="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+    >
+      <option value="" disabled selected>Choisissez une priorité</option>
+      <option value="low">Basse</option>
+      <option value="medium">Moyenne</option>
+      <option value="high">Élevée</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="assignedTo" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Assigné à</label>
+    <input
+      id="assignedTo"
+      formControlName="assignedTo"
+      placeholder="Utilisateurs assignés (séparés par des virgules)"
+      class="mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition duration-200 ease-in-out"
+    />
+  </div>
+
+  <div class="flex justify-end space-x-4">
+    <button type="submit" class="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600 transition duration-200 ease-in-out shadow-md">Sauvegarder</button>
+    <button type="button" (click)="onCancel()" class="bg-gray-300 text-black rounded-lg py-2 px-4 hover:bg-gray-400 transition duration-200 ease-in-out dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500 shadow-md">Annuler</button>
+  </div>
 </form>

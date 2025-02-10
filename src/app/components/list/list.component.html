@@ -63,3 +63,10 @@
     Ajouter une carte
   </button>
 </div>
+<app-modal [isOpen]="isAddingCard" title="Add New List" [close]="onCardCancel.bind(this)">
+  <app-card-form (save)="onCardSave($event)" (cancel)="onCardCancel()"></app-card-form>
+</app-modal>
+
+<app-modal [isOpen]="isEditingList" title="Add New List" [close]="onEditListCancel.bind(this)">
+  <app-list-form [list]="editedList" (save)="onEditListSave($event)" (cancel)="onEditListCancel()"></app-list-form>
+

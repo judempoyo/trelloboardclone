@@ -1,7 +1,7 @@
-
 import { Component, Input } from '@angular/core';
-import { List } from '../../models';
+import { Card, List } from '../../models';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { BoardService } from '../../board.service'; // Import the BoardService
 
 @Component({
   selector: 'app-list',
@@ -12,52 +12,76 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class ListComponent {
   dropdownOpen: boolean = false;
   @Input() list!: List;
+  isAddingCard: boolean = false;
+  isEditingList: boolean = false; // State to show/hide the edit list form
+  editedList: List; // Store the edited list data
+
+  constructor(private boardService: BoardService) {
+    this.editedList = { id: '', title: '', cards: [] }; // Initialize with default values
+  }
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
   copyList() {
-    // Logique pour copier la liste
-    console.log('Liste copiée');
-    this.dropdownOpen = false; // Fermer le menu après l'action
+    const copiedList = this.boardService.copyList(this.list); // Use the service to copy the list
+    console.log('Liste copiée:', copiedList);
+    this.dropdownOpen = false;
   }
 
   addCard() {
-    // Logique pour ajouter une carte
-    console.log('Ajouter une carte');
-    this.dropdownOpen = false; // Fermer le menu après l'action
-    }
+    console.log('Ajouter une nouvelle tâche');
+    this.isAddingCard = true;
+    this.dropdownOpen = false;
+  }
+
+  onCardSave(newCard: Card) {
+    this.list.cards.push(newCard);
+    this.isAddingCard = false;
+  }
+
+  onCardCancel() {
+    this.isAddingCard = false;
+  }
 
   moveList() {
-    // Logique pour déplacer la liste
     console.log('Liste déplacée');
-    this.dropdownOpen = false; // Fermer le menu après l'action
+    this.dropdownOpen = false; // Close the dropdown after the action
   }
 
   markAsComplete() {
-    // Logique pour marquer la liste comme complète
     console.log(`Liste "${this.list.title}" marquée comme complète.`);
-    // Vous pouvez également mettre à jour un état ou une propriété ici
   }
 
   editList() {
-    // Logique pour modifier la liste
-    console.log(`Modifier la liste "${this.list.title}".`);
-    // Vous pouvez ouvrir un modal ou une autre interface pour modifier la liste
+    this.editedList = { ...this.list }; // Set the current list data for editing
+    this.isEditingList = true; // Show the edit list form
+    this.dropdownOpen = false; // Close the dropdown
   }
 
   deleteList() {
-    // Logique pour supprimer la liste
+    this.boardService.deleteList(this.list.id); // Use the service to delete the list
     console.log(`Liste "${this.list.title}" supprimée.`);
-    // Vous pouvez également appeler un service pour supprimer la liste de la base de données
+    // Optionally, you can emit an event to notify the parent component to remove the list from the UI
   }
-  
+
   drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.list.cards, event.previousIndex, event.currentIndex);
     } else {
       console.warn('Déplacement entre les listes non géré ici.');
     }
+  }
+
+  onEditListSave(updatedList: List) {
+    this.list.title = updatedList.title; // Update the list title
+    this.list.color = updatedList.color; // Update the list color
+    this.list.tags = updatedList.tags; // Update the list tags
+    this.isEditingList = false; // Hide the edit list form
+  }
+
+  onEditListCancel() {
+    this.isEditingList = false; // Hide the edit list form without saving
   }
 }
