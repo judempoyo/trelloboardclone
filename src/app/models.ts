@@ -30,5 +30,5 @@ export interface Board {
   title: string;
   lists: List[];
   backgroundColor?: string;
-  members?: string[]; 
-}
+  members?: string[];
+  favorites?:string[];}

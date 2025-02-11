@@ -1,10 +1,8 @@
- <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-64 transition-transform transform hover:scale-105 duration-300 py-4">
-  <!-- Titre de la liste sans fond -->
-  <div class="flex justify-between items-center mb-2">
+ <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition-transform transform hover:scale-105 duration-300 py-4 md:w-64 w-9/12 m-auto">
+  <div class="flex justify-between items-center mb-2 container mx-0 w-full">
     <h2 class="font-semibold text-lg text-gray-800 dark:text-white">
       {{ list.title }}
     </h2>
-    <!-- Bouton déroulant pour les options -->
     <div class="relative">
       <button class="focus:outline-none" (click)="toggleDropdown()">
         <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -23,11 +21,14 @@
     </div>
   </div>
 
-  <!-- Image de la liste (carte d'image) -->
-  <div class="mb-2 group">
-    <img src="{{ list.title }}" alt="{{ list.title }}" class="w-full h-32 object-cover rounded-md" />
 
-    <div class="flex justify-start mb-2">
+  <div class="mb-2 group bg-[{{ list.color }}] rounded-md shadow-2xl mb-4 ">
+
+    <div class="object-cover rounded-md text-2xl md:text-4xl  font-bold text-center place-content-center justify-center content-center w-full h-36 p-auto text-gray-600 dark:text-white">
+        {{ list.title }}
+    </div>
+
+    <div class="flex justify-start mx-2 pb-2">
       <button (click)="markAsComplete()" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition duration-300 opacity-0 group-hover:opacity-100">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
@@ -50,12 +51,10 @@
   </div>
 
 
-  <!-- Liste des cartes -->
   <div cdkDropList (cdkDropListDropped)="drop($event)" class="mt-2">
     <app-card *ngFor="let card of list.cards" [card]="card" cdkDrag></app-card>
   </div>
 
-  <!-- Bouton pour ajouter une carte avec une icône -->
   <button (click)="addCard()" class="mt-4 w-full bg-transparent text-blue-500 flex items-center justify-center border border-blue-500 rounded-lg py-2 hover:bg-blue-500 hover:text-white transition duration-300">
     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
