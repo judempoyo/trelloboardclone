@@ -1,0 +1,17 @@
+<div *ngIf="list">
+  <h2>{{ list.title }}</h2>
+  <p *ngIf="list.isCompleted">Cette liste est complète.</p>
+  <p *ngIf="!list.isCompleted">Cette liste est en cours.</p>
+  <div>
+    <h3>Cartes</h3>
+    <ul>
+      <li *ngFor="let card of list.cards">
+        <h4>{{ card.title }}</h4>
+        <p>{{ card.description }}</p>
+        <p>Étiquettes: {{ card.labels?.join(', ') }}</p>
+        <p>Date d'échéance: {{ card.dueDate | date }}</p>
+        <p>Priorité: {{ card.priority }}</p>
+      </li>
+    </ul>
+  </div>
+</div>

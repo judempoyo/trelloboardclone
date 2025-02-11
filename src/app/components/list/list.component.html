@@ -1,7 +1,7 @@
  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 transition-transform transform hover:scale-105 duration-300 py-4 md:w-64 w-9/12 m-auto">
   <div class="flex justify-between items-center mb-2 container mx-0 w-full">
     <h2 class="font-semibold text-lg text-gray-800 dark:text-white">
-      {{ list.title }}
+      <a [routerLink]="['/list', list.id]">{{ list.title }}</a>
     </h2>
     <div class="relative">
       <button class="focus:outline-none" (click)="toggleDropdown()">
@@ -22,7 +22,7 @@
   </div>
 
 
-  <div class="mb-2 group bg-[{{ list.color }}] rounded-md shadow-2xl mb-4 ">
+  <div class="mb-2 group bg-[{{ list.color }}] rounded-md shadow-2xl mb-4 "  [ngStyle]="{'background-color': list.color}">
 
     <div class="object-cover rounded-md text-2xl md:text-4xl  font-bold text-center place-content-center justify-center content-center w-full h-36 p-auto text-gray-600 dark:text-white">
         {{ list.title }}
@@ -53,6 +53,7 @@
 
   <div cdkDropList (cdkDropListDropped)="drop($event)" class="mt-2">
     <app-card *ngFor="let card of list.cards" [card]="card" cdkDrag></app-card>
+
   </div>
 
   <button (click)="addCard()" class="mt-4 w-full bg-transparent text-blue-500 flex items-center justify-center border border-blue-500 rounded-lg py-2 hover:bg-blue-500 hover:text-white transition duration-300">
@@ -62,10 +63,10 @@
     Ajouter une carte
   </button>
 </div>
-<app-modal [isOpen]="isAddingCard" title="Add New List" [close]="onCardCancel.bind(this)">
+<app-modal [isOpen]="isAddingCard" title="Ajouter une tache" [close]="onCardCancel.bind(this)">
   <app-card-form (save)="onCardSave($event)" (cancel)="onCardCancel()"></app-card-form>
 </app-modal>
 
-<app-modal [isOpen]="isEditingList" title="Add New List" [close]="onEditListCancel.bind(this)">
+<app-modal [isOpen]="isEditingList" title="Modifier la Liste" [close]="onEditListCancel.bind(this)">
   <app-list-form [list]="editedList" (save)="onEditListSave($event)" (cancel)="onEditListCancel()"></app-list-form>
 

@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Board } from '../../models';
 
 @Component({
-  selector: 'app-board-form-component',
+  selector: 'app-board-form',
   standalone: false,
 
-  templateUrl: './board-form-component.component.html',
-  styleUrl: './board-form-component.component.css'
+  templateUrl: './board-form.component.html',
+  styleUrl: './board-form.component.css'
 })
 export class BoardFormComponent {
   @Input() board?: Board; // Pour l'édition

@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding, effect, signal } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,6 +21,7 @@ export class AppComponent  {
     effect(() => {
       window.localStorage.setItem('darkMode', JSON.stringify(this.darkMode()));
     });
+
   }
 
 

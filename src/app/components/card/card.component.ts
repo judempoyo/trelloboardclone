@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Card } from '../../models';
+import { BoardService } from '../../board.service';
 
 @Component({
   selector: 'app-card',
@@ -9,16 +10,30 @@ import { Card } from '../../models';
 })
 export class CardComponent {
   @Input() card!: Card;
+  isEditing: boolean = false;
+  constructor(private boardService: BoardService) {}
 
-  markAsRead() {
-    // Logique pour marquer la tâche comme lue
-    console.log(`Tâche "${this.card.title}" marquée comme lue.`);
-    // Vous pouvez également mettre à jour un état ou une propriété ici
+  markAsComplete() {
+
+    this.boardService.markCardAsComplete(this.card.id);
+    console.log(`Tâche "${this.card.title}" marquée comme complète.`);
   }
 
   editTask() {
-    // Logique pour modifier la tâche
-    console.log(`Modifier la tâche "${this.card.title}".`);
-    // Vous pouvez ouvrir un modal ou une autre interface pour modifier la tâche
+    this.isEditing = true;
   }
-}
+
+  onCardSave(updatedCard: Card) {
+    // Logique pour mettre à jour la carte avec les nouvelles données
+    this.card.title = updatedCard.title;
+    this.card.description = updatedCard.description;
+    this.card.labels = updatedCard.labels;
+    this.card.dueDate = updatedCard.dueDate;
+    this.card.priority = updatedCard.priority;
+    this.card.assignedTo = updatedCard.assignedTo;
+    this.isEditing = false; // Fermer le formulaire
+  }
+
+  onCardCancel() {
+    this.isEditing = false;
+  }}

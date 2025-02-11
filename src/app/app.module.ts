@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { CardFormComponent } from './components/card-form/card-form.component';
 import { ListFormComponent } from './components/list-form/list-form.component';
 import { BoardFormComponent } from './components/board-form/board-form.component';
 import { ModalComponent } from './modal/modal.component';
+import { ListDetailComponent } from './list-detail/list-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,15 @@ import { ModalComponent } from './modal/modal.component';
     CardFormComponent,
     ListFormComponent,
     BoardFormComponent,
-    ModalComponent
+    ModalComponent,
+    ListDetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DragDropModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
 ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,7 +14,7 @@ export class ListComponent {
   @Input() list!: List;
   isAddingCard: boolean = false;
   isEditingList: boolean = false; // State to show/hide the edit list form
-  editedList: List; // Store the edited list data
+  editedList: List;
 
   constructor(private boardService: BoardService) {
     this.editedList = { id: '', title: '', cards: [] }; // Initialize with default values
@@ -50,10 +50,11 @@ export class ListComponent {
     this.dropdownOpen = false; // Close the dropdown after the action
   }
 
+
   markAsComplete() {
+    this.boardService.markListAsComplete(this.list.id); // Marquer la liste comme complète
     console.log(`Liste "${this.list.title}" marquée comme complète.`);
   }
-
   editList() {
     this.editedList = { ...this.list }; // Set the current list data for editing
     this.isEditingList = true; // Show the edit list form
@@ -84,4 +85,5 @@ export class ListComponent {
   onEditListCancel() {
     this.isEditingList = false; // Hide the edit list form without saving
   }
+
 }

@@ -47,14 +47,14 @@ export class CardFormComponent {
     if (this.cardForm.valid) {
       const formValue = this.cardForm.value;
       const card: Card = {
-        id: this.card ? this.card.id : this.generateId(), // Assuming a method to generate a new ID
+        id: this.card ? this.card.id : this.generateId(),
         title: formValue.title,
         description: formValue.description,
         labels: formValue.labels ? formValue.labels.split(',').map((label: string) => label.trim()) : [],
         dueDate: formValue.dueDate ? new Date(formValue.dueDate) : undefined,
         priority: formValue.priority,
         assignedTo: formValue.assignedTo ? formValue.assignedTo.split(',').map((user: string) => user.trim()) : [],
-        color: this.card?.color, // Retain color if editing
+        color: this.card?.color,
       };
       this.save.emit(card);
       this.cardForm.reset();
@@ -66,6 +66,6 @@ export class CardFormComponent {
   }
 
   private generateId(): string {
-    return Math.random().toString(36).substr(2, 9); // Simple ID generation
+    return Math.random().toString(36).substr(2, 9);
   }
 }

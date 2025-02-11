@@ -8,6 +8,7 @@ export interface Card {
   priority?: 'low' | 'medium' | 'high';
   assignedTo?: string[];
   color?: string;
+  isCompleted?: boolean;
 }
 
 export interface Comment {
@@ -23,6 +24,7 @@ export interface List {
   cards: Card[];
   color?: string;
   tags?: string[];
+  isCompleted?: boolean;
 }
 
 export interface Board {
