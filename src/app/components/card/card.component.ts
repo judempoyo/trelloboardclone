@@ -10,12 +10,12 @@ import { BoardService } from '../../board.service';
 })
 export class CardComponent {
   @Input() card!: Card;
+  @Input() boardId!: string; // Ajouter une propriété pour l'ID du tableau
   isEditing: boolean = false;
   constructor(private boardService: BoardService) {}
 
   markAsComplete() {
-
-    this.boardService.markCardAsComplete(this.card.id);
+    this.boardService.markCardAsComplete(this.boardId, this.card.id); // Marquer la carte comme complète
     console.log(`Tâche "${this.card.title}" marquée comme complète.`);
   }
 
@@ -36,4 +36,5 @@ export class CardComponent {
 
   onCardCancel() {
     this.isEditing = false;
-  }}
+  }
+}

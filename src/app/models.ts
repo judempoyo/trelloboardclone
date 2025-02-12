@@ -8,9 +8,15 @@ export interface Card {
   priority?: 'low' | 'medium' | 'high';
   assignedTo?: string[];
   color?: string;
+  checklist?: ChecklistItem[];
   isCompleted?: boolean;
 }
 
+export interface ChecklistItem {
+  id: string;
+  text: string;
+  completed: boolean;
+}
 export interface Comment {
   id: string;
   text: string;

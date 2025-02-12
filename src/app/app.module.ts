@@ -15,6 +15,7 @@ import { ListFormComponent } from './components/list-form/list-form.component';
 import { BoardFormComponent } from './components/board-form/board-form.component';
 import { ModalComponent } from './modal/modal.component';
 import { ListDetailComponent } from './list-detail/list-detail.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ListDetailComponent } from './list-detail/list-detail.component';
     BoardFormComponent,
     ModalComponent,
     ListDetailComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
