@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +32,7 @@ import { HomeComponent } from './home/home.component';
     ListDetailComponent,
     HomeComponent,
   ],
-  imports: [
+  imports: [BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     DragDropModule,

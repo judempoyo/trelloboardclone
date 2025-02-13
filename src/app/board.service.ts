@@ -90,6 +90,20 @@ export class BoardService {
   deleteBoard(boardId: string): void {
     this.boards = this.boards.filter(board => board.id !== boardId); // Supprimer un tableau par son ID
   }
+  setBoardToFavorite(boardId: string) {
+    const board = this.getBoard(boardId);
+    if (board) {
+
+      const favorite = board.favorites?.find(f => f === 'userid');
+      if (!favorite) {
+        console.log('ajout');
+        board.favorites?.push('userid');
+      } else {
+        console.log('suppression');
+        //board.favorites?;
+      }
+    }
+  }
 
   markListAsComplete(boardId: string, listId: string): void {
     const board = this.getBoard(boardId);
@@ -100,6 +114,7 @@ export class BoardService {
       }
     }
   }
+
 
   addList(boardId: string, newList: List): void {
     const board = this.getBoard(boardId);

@@ -32,7 +32,8 @@ export class BoardComponent implements OnInit {
     this.boards = this.boardService.getBoards(); // Récupérer tous les tableaux
     const boardId = this.route.snapshot.paramMap.get('id'); // Récupérer l'ID du tableau à partir des paramètres de la route
     if (boardId) {
-      this.selectedBoard = this.boardService.getBoard(boardId)!; // Mettre à jour le tableau sélectionné
+      this.selectedBoard = this.boardService.getBoard(boardId)!;
+
     }
   }
 
@@ -47,12 +48,27 @@ export class BoardComponent implements OnInit {
   }
 
   onListCancel() {
+
     this.isAddingList = false; // Hide the list form
   }
 
   toggleFavorite() {
-    // Logique pour ajouter ou retirer des favoris
-    console.log('Toggle Favorite');
+
+    console.log(this.selectedBoard);
+    console.log(this.boards);
+/*
+      const favorite = this.selectedBoard.favorites?.find(f => f === 'userid');
+      console.log(favorite);
+      if (!favorite) {
+        console.log('ajout');
+        this.selectedBoard.favorites?.push('userid');
+      } else {
+        console.log('suppression');
+        //board.favorites?;
+      } */
+      console.log('Toggle Favorite');
+
+    //this.boardService.setBoardToFavorite(this.selectedBoard.id);
   }
 
   toggleVisibility() {
@@ -75,6 +91,6 @@ export class BoardComponent implements OnInit {
     console.log('Share Board');
   }
   drop(event: CdkDragDrop<any[]>) {
-    moveItemInArray(this.board.lists, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.selectedBoard.lists, event.previousIndex, event.currentIndex);
   }
 }

@@ -1,5 +1,5 @@
 <!--   <div class="board bg-gray-100 dark:bg-gray-600 shadow-md rounded-lg p-0 py-8">
- 
+
     <div class="flex items-center justify-between mb-4 backdrop-blur-md bg-transparent shadow-2xl w-full m-0 rounded-lg p-4">
       <div class="flex items-center space-x-4">
         <h1 class="text-3xl font-bold text-gray-700 dark:text-white transition duration-300 ease-in-out hover:text-blue-600">{{ board.title }}</h1>
@@ -40,7 +40,7 @@
     <div class="flex items-center space-x-4">
       <h1 class="text-3xl font-bold text-gray-700 dark:text-white transition duration-300 ease-in-out hover:text-blue-600">{{ selectedBoard.title }}</h1>
       <div class="flex items-center space-x-2">
-        <app-custom-button [svg]="svgFavorite" [action]="toggleFavorite"></app-custom-button>
+        <app-custom-button [svg]="svgFavorite" [action]="toggleFavorite" ></app-custom-button>
         <app-custom-button [svg]="svgVisibility" [action]="toggleVisibility"></app-custom-button>
       </div>
     </div>
