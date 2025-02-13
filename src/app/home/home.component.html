@@ -2,8 +2,8 @@
   <main class="container mx-auto px-4 py-8">
     <h2 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Mes Tableaux</h2>
 
-    <div class="grid  grid-cols-1 sm:grid-cols-5 lg:grid-cols-4 gap-4">
-      <div *ngFor="let board of boards" class="transform transition-transform duration-300 hover:scale-105 m-auto md:w-80 w-3/4">
+    <div class="grid  grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-6">
+      <div *ngFor="let board of boards" class="transform transition-transform duration-300 hover:scale-105 m-auto md:w-80 w-3/4 sm:w-80">
         <div class="bg-white dark:bg-gray-700 shadow-xl rounded-2xl overflow-hidden ">
           <div class="p-4">
             <h3 class="text-lg font-bold text-gray-800 dark:text-white cursor-pointer" (click)="selectBoard(board.id)">
@@ -19,9 +19,11 @@
         </div>
       </div>
     </div>
-
+    <app-modal [isOpen]="isAddingBoard" title="Creer un tableau" [close]="onBoardCancel.bind(this)">
+      <app-board-form (save)="onBoardSave($event)" (cancel)="onBoardCancel()" title="Creer un tableau"></app-board-form>
+    </app-modal>
     <div class="mt-8">
-      <button class="bg-transparent shadow-md text-gray-600 dark:text-white shadow-teal-600  transition-transform transform hover:scale-105 hover:text-white duration-300  rounded-2xl px-4 py-2  hover:bg-teal-700 ">
+      <button (click)="addBoard()" class="bg-transparent shadow-md text-gray-600 dark:text-white shadow-teal-600  transition-transform transform hover:scale-105 hover:text-white duration-300  rounded-2xl px-4 py-2  hover:bg-teal-700 ">
         Créer un Nouveau Tableau
       </button>
     </div>
@@ -29,7 +31,7 @@
 
   <footer class="bg-gray-200 dark:bg-gray-900 shadow mt-8 fixed bottom-0 w-full">
     <div class="container mx-auto px-4 py-4 text-center">
-      <p class="text-gray-600 dark:text-white">© 2023 Trello Clone. Tous droits réservés.</p>
+      <p class="text-gray-600 dark:text-white">© 2025 Trello Clone. Tous droits réservés.</p>
     </div>
   </footer>
 </div>

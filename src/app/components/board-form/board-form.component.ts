@@ -13,6 +13,8 @@ export class BoardFormComponent {
   @Input() board?: Board; // Pour l'édition
   @Output() save = new EventEmitter<Board>();
   @Output() cancel = new EventEmitter<void>();
+  @Input() title: string = '';
+
 
  boardForm!: FormGroup;
 
@@ -23,19 +25,29 @@ export class BoardFormComponent {
   createForm() {
     this.boardForm = this.fb.group({
       title: [''],
-      // Ajoutez d'autres champs si nécessaire
+      backgroundColor:['']
     });
   }
 
   ngOnChanges() {
     if (this.board) {
-      this.boardForm.patchValue(this.board);
+      this.boardForm.patchValue({
+        title: this.board.title,
+        backgroundColor: this.board.backgroundColor || '#ffffff',
+      });
     }
   }
 
   onSubmit() {
     if (this.boardForm.valid) {
-      this.save.emit(this.boardForm.value);
+      const formValue = this.boardForm.value;
+      const updatedBoard:Board = {
+        id:this.board?.id || this.generateId(),
+        title:formValue.title,
+        backgroundColor:formValue.backgroundColor,
+        lists:[]
+      }
+      this.save.emit(updatedBoard);
       this.boardForm.reset();
     }
   }
@@ -43,4 +55,8 @@ export class BoardFormComponent {
   onCancel() {
     this.cancel.emit();
   }
+  private generateId(): string {
+    return Math.random().toString(36).substr(2, 9); // Simple ID generation
+  }
+
 }

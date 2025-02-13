@@ -12,7 +12,7 @@ import { BoardService } from '../../board.service';
 export class ListComponent {
   dropdownOpen: boolean = false;
   @Input() list!: List;
-  @Input() boardId!: string; // Ajouter une propriété pour l'ID du tableau
+  @Input() boardId!: string; 
   isAddingCard: boolean = false;
   isEditingList: boolean = false; // État pour afficher/cacher le formulaire d'édition de la liste
   editedList: List;

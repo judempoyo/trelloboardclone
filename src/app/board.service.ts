@@ -123,12 +123,12 @@ export class BoardService {
     }
   }
 
-  deleteList(boardId: string, listId: string): void {
-    const board = this.getBoard(boardId);
-    if (board) {
-      board.lists = board.lists.filter(list => list.id !== listId); // Supprimer une liste par son ID
+    deleteList(boardId: string, listId: string): void {
+      const board = this.getBoard(boardId);
+      if (board) {
+        board.lists = board.lists.filter(list => list.id !== listId); 
+      }
     }
-  }
 
   copyList(boardId: string, originalList: List): List | undefined {
     const board = this.getBoard(boardId);

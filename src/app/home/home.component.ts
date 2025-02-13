@@ -11,6 +11,8 @@ import { Router } from '@angular/router'; // Importer Router
 })
 export class HomeComponent implements OnInit {
   boards!: Board[];
+  isAddingBoard: boolean = false;
+
 
   constructor(private boardService: BoardService, private router: Router) {}
 
@@ -19,6 +21,22 @@ export class HomeComponent implements OnInit {
   }
 
   selectBoard(boardId: string) {
-    this.router.navigate(['/board', boardId]); 
+    this.router.navigate(['/board', boardId]);
   }
+
+
+    addBoard() {
+      this.isAddingBoard = true; // Show the Board form
+    }
+
+    onBoardSave(board: Board) {
+      this.boardService.addBoard(board);
+      this.isAddingBoard = false;
+      this.boards = this.boardService.getBoards();
+    }
+
+    onBoardCancel() {
+
+      this.isAddingBoard = false; // Hide the list form
+    }
 }

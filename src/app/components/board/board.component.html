@@ -1,40 +1,5 @@
-<!--   <div class="board bg-gray-100 dark:bg-gray-600 shadow-md rounded-lg p-0 py-8">
 
-    <div class="flex items-center justify-between mb-4 backdrop-blur-md bg-transparent shadow-2xl w-full m-0 rounded-lg p-4">
-      <div class="flex items-center space-x-4">
-        <h1 class="text-3xl font-bold text-gray-700 dark:text-white transition duration-300 ease-in-out hover:text-blue-600">{{ board.title }}</h1>
-        <div class="flex items-center space-x-2">
-          <app-custom-button [svg]="svgFavorite" [action]="toggleFavorite"></app-custom-button>
-          <app-custom-button [svg]="svgVisibility" [action]="toggleVisibility"></app-custom-button>
-        </div>
-      </div>
-      <div class="flex items-center space-x-4">
-        <app-custom-button [svg]="svgFilter" [action]="filter"></app-custom-button>
-        <app-custom-button [svg]="svgProfile" [action]="openProfile"></app-custom-button>
-        <app-custom-button [svg]="svgShare" [action]="share"></app-custom-button>
-      </div>
-    </div>
-
-    <div class="overflow-hidden mx-4">
-      <app-modal [isOpen]="isAddingList" title="Add New List" [close]="onListCancel.bind(this)">
-        <app-list-form (save)="onListSave($event)" (cancel)="onListCancel()"></app-list-form>
-      </app-modal>
-      <div class="lists flex flex-col md:flex-row space-y-4 overflow-x-auto">
-        <div cdkDropList (cdkDropListDropped)="drop($event)" class="flex space-x-4 flex-col md:flex-row space-y-4">
-          <app-list *ngFor="let list of selectedBoard.lists" [list]="list" cdkDrag></app-list>
-
-        </div>
-        <button class="flex items-center justify-center border bg-transparent shadow-3xl dark:text-white text-gray-600 rounded-lg px-4 py-2 md:h-12 transition duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-gray-500" (click)="addList()">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-          </svg>
-          Ajouter une liste
-        </button>
-      </div>
-    </div>
-  </div>
- -->
- <div class="board bg-gray-100 dark:bg-gray-600 shadow-md rounded-lg p-0 py-8">
+ <div class="board bg-gray-100 dark:bg-gray-600 shadow-md rounded-lg p-0 py-8" [ngStyle]="{'background-color': selectedBoard.backgroundColor}">
   <!-- En-tête du tableau -->
   <div class="flex items-center justify-between mb-4 backdrop-blur-md bg-transparent shadow-2xl w-full m-0 rounded-lg p-4">
     <div class="flex items-center space-x-4">
@@ -56,8 +21,9 @@
       <app-list-form (save)="onListSave($event)" (cancel)="onListCancel()"></app-list-form>
     </app-modal>
     <div class="lists flex flex-col md:flex-row space-y-4 overflow-x-auto">
+  
       <div cdkDropList (cdkDropListDropped)="drop($event)" class="flex space-x-4 flex-col md:flex-row space-y-4">
-        <app-list *ngFor="let list of selectedBoard.lists" [list]="list" cdkDrag></app-list>
+        <app-list *ngFor="let list of selectedBoard.lists" [list]="list" cdkDrag boardId="{{ selectedBoard.id}}"></app-list>
       </div>
       <button class="flex items-center justify-center border bg-transparent shadow-3xl dark:text-white text-gray-600 rounded-lg px-4 py-2 md:h-12 transition duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-gray-500" (click)="addList()">
         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

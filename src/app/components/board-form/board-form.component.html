@@ -1,5 +1,41 @@
-<form [formGroup]="boardForm" (ngSubmit)="onSubmit()">
-  <input formControlName="title" placeholder="Titre du tableau" class="border rounded p-1 w-full" />
-  <button type="submit" class="bg-blue-500 text-white rounded-lg py-1 mt-2">Sauvegarder</button>
-  <button type="button" (click)="onCancel()" class="bg-gray-300 text-black rounded-lg py-1 mt-2">Annuler</button>
-</form>
+
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-2 px-4 mx-auto max-w-2xl lg:py-16">
+    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ title }}</h2>
+    <form [formGroup]="boardForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+        <div class="sm:col-span-2">
+          <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titre tableau</label>
+          <input
+            id="title"
+            formControlName="title"
+            placeholder="Titre de la liste"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="backgroundColor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Couleur</label>
+          <input
+            id="backgroundColor"
+            formControlName="backgroundColor"
+            type="color"
+            class="mt-2 block w-full border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600"
+          />
+        </div>
+
+
+      </div>
+
+      <div class="flex justify-end space-x-4">
+        <button type="submit" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+          Sauvegarder
+        </button>
+        <button type="button" (click)="onCancel()" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500 dark:focus:ring-gray-500">
+          Annuler
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

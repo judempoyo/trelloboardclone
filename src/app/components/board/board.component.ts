@@ -39,17 +39,21 @@ export class BoardComponent implements OnInit {
 
   addList() {
     console.log('Ajouter une nouvelle liste');
-    this.isAddingList = true; // Show the list form
+    this.isAddingList = true;
   }
 
   onListSave(newList: List) {
-    this.board.lists.push(newList); // Add the new list to the board
-    this.isAddingList = false; // Hide the list form
+    console.log(this.selectedBoard);
+    
+    this.selectedBoard.lists.push(newList);
+    this.isAddingList = false;
+
+    console.log(this.selectedBoard);
   }
 
   onListCancel() {
 
-    this.isAddingList = false; // Hide the list form
+    this.isAddingList = false;
   }
 
   toggleFavorite() {

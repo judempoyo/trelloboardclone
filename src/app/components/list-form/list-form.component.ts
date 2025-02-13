@@ -22,8 +22,8 @@ export class ListFormComponent {
   createForm() {
     this.listForm = this.fb.group({
       title: [''],
-      color: [''], // New field for color
-      tags: [''], // New field for tags
+      color: [''],
+      tags: [''],
     });
   }
 
@@ -40,7 +40,7 @@ export class ListFormComponent {
   onSubmit() {
     if (this.listForm.valid) {
       const formValue = this.listForm.value;
-      // Split tags into an array
+ 
       formValue.tags = formValue.tags.split(',').map((tag: string) => tag.trim());
       const updatedList: List = {
         id: this.list?.id || this.generateId(), // Use existing ID or generate a new one
