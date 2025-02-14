@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+/* import { Component, Input } from '@angular/core';
 import { Card } from '../../models';
 import { BoardService } from '../../board.service';
 
@@ -36,5 +36,35 @@ export class CardComponent {
 
   onCardCancel() {
     this.isEditing = false;
+  }
+}
+ */
+
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Card } from '../../models';
+import { BoardService } from '../../board.service';
+
+@Component({
+  selector: 'app-card',
+  standalone: false,
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.css']
+})
+export class CardComponent {
+  @Input() card!: Card;
+  @Input() boardId!: string; // Ajouter une propriété pour l'ID du tableau
+  @Output() editCard = new EventEmitter<Card>(); // Émettre un événement pour l'édition
+
+  constructor(private boardService: BoardService) {}
+
+  markAsComplete() {
+    this.boardService.markCardAsComplete(this.boardId, this.card.id); // Marquer la carte comme complète
+    console.log(`Tâche "${this.card.title}" marquée comme complète.`);
+  }
+
+  onEditTask() {
+
+  /*   console.log('Édition de la carte:', this.card); */
+    this.editCard.emit(this.card); // Émettre l'événement avec la carte à éditer
   }
 }

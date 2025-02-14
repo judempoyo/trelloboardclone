@@ -64,7 +64,7 @@ export class BoardService {
               priority: 'low',
               assignedTo: ['user2'],
               color: 'yellow',
-              isCompleted: false
+              isCompleted: true
             }
           ]
         }
@@ -126,7 +126,7 @@ export class BoardService {
     deleteList(boardId: string, listId: string): void {
       const board = this.getBoard(boardId);
       if (board) {
-        board.lists = board.lists.filter(list => list.id !== listId); 
+        board.lists = board.lists.filter(list => list.id !== listId);
       }
     }
 

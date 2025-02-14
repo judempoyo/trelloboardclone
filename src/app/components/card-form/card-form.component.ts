@@ -9,7 +9,7 @@ import { Card } from '../../models';
   styleUrls: ['./card-form.component.css']
 })
 export class CardFormComponent {
-  @Input() card?: Card; // Pour l'édition
+  @Input() card?: Card; 
   @Output() save = new EventEmitter<Card>();
   @Output() cancel = new EventEmitter<void>();
 

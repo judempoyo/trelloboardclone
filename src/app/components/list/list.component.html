@@ -52,7 +52,7 @@
 
 
   <div cdkDropList (cdkDropListDropped)="drop($event)" class="mt-2">
-    <app-card *ngFor="let card of list.cards" [card]="card" cdkDrag></app-card>
+    <app-card *ngFor="let card of list.cards" [card]="card" boardId="boardId" (editCard)="onEditCard($event)" cdkDrag></app-card>
 
   </div>
 
@@ -69,4 +69,9 @@
 
 <app-modal [isOpen]="isEditingList" title="Modifier la Liste" [close]="onEditListCancel.bind(this)">
   <app-list-form [list]="editedList" (save)="onEditListSave($event)" (cancel)="onEditListCancel()"></app-list-form>
+
+
+  <app-modal [isOpen]="isEditingCard" title="Modifier la carte" [close]="onCardCancel.bind(this)">
+    <app-card-form [card]="cardToEdit" (save)="onEditCardSave($event)" (cancel)="onEditCardCancel()"></app-card-form>
+  </app-modal>
 

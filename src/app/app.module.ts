@@ -5,6 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardComponent } from './components/board/board.component';
@@ -17,6 +23,8 @@ import { BoardFormComponent } from './components/board-form/board-form.component
 import { ModalComponent } from './modal/modal.component';
 import { ListDetailComponent } from './list-detail/list-detail.component';
 import { HomeComponent } from './home/home.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -31,15 +39,23 @@ import { HomeComponent } from './home/home.component';
     ModalComponent,
     ListDetailComponent,
     HomeComponent,
+    ConfirmDialogComponent,
   ],
-  imports: [BrowserAnimationsModule,
+  imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     DragDropModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCheckboxModule
 ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
