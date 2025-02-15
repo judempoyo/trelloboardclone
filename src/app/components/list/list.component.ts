@@ -103,13 +103,21 @@ import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.comp
 })
 export class ListComponent {
   dropdownOpen: boolean = false;
+  filterOptionsOpen = false;
+
   @Input() list!: List;
   @Input() boardId!: string;
   isAddingCard: boolean = false;
-  isEditingList: boolean = false; // État pour afficher/cacher le formulaire d'édition de la liste
+  isEditingList: boolean = false; 
   editedList: List;
   isEditingCard: boolean = false;
   cardToEdit!: Card;
+  priorityFilter: 'low' | 'medium' | 'high' | null = null; // Filtre de priorité
+  dueDateFilter: Date | null = null;
+
+  completedFilter: boolean | null = null;
+
+  showCelebration = false; 
 
   constructor(private boardService: BoardService, private dialog: MatDialog) {
     this.editedList = { id: '', title: '', cards: [] }; // Initialiser avec des valeurs par défaut
@@ -117,6 +125,10 @@ export class ListComponent {
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  toggleFilterOptions() {
+    this.filterOptionsOpen = !this.filterOptionsOpen;
   }
 
   copyList() {
@@ -145,8 +157,9 @@ export class ListComponent {
 
   onEditCard(card: Card) {
     this.cardToEdit = card; // Stocker la carte à éditer
-     console.log('Édition de la carte:', this.cardToEdit);
+    // console.log('Édition de la carte:', this.cardToEdit);
     this.isEditingCard = true;
+    console.log(this.isEditingCard)
   }
 
   onEditCardSave(updatedCard: Card) {
@@ -168,6 +181,11 @@ export class ListComponent {
   markAsComplete() {
     this.boardService.markListAsComplete(this.boardId, this.list.id); // Marquer la liste comme complète
     console.log(`Liste "${this.list.title}" marquée comme complète.`);
+
+    this.showCelebration = true; // Afficher la célébration
+    setTimeout(() => {
+      this.showCelebration = false; // Masquer après un certain temps
+    }, 3000); 
   }
 
   editList() {
@@ -207,5 +225,41 @@ export class ListComponent {
 
   onEditListCancel() {
     this.isEditingList = false; // Cacher le formulaire d'édition de la liste sans enregistrer
+  }
+
+  filterCards(): Card[] {
+    const priorityOrder = {
+      high: 3,
+      medium: 2,
+      low: 1,
+      undefined: 0 // Pour gérer les cartes sans priorité
+    };
+  
+    return this.list.cards
+      .filter(card => {
+        const matchesPriority = this.priorityFilter ? card.priority === this.priorityFilter : true;
+        const matchesDueDate = this.dueDateFilter ? 
+          (card.dueDate ? new Date(card.dueDate).toDateString() === new Date(this.dueDateFilter).toDateString() : false) : true;
+        const matchesCompletion = this.completedFilter !== null ? card.isCompleted === this.completedFilter : true;
+        return matchesPriority && matchesDueDate && matchesCompletion;
+      })
+
+      /*
+      .sort((a, b) => {
+        const priorityA = priorityOrder[a.priority || 'undefined'];
+        const priorityB = priorityOrder[b.priority || 'undefined'];
+        return priorityB - priorityA; // Tri décroissant
+      }); */
+  }
+
+  get hasFilteredCards(): boolean {
+    return this.filterCards().length > 0;
+  }
+
+  // Méthode pour réinitialiser les filtres
+  resetFilters() {
+    this.priorityFilter = null;
+    this.dueDateFilter = null;
+    this.completedFilter = null;
   }
 }

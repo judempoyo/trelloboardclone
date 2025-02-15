@@ -67,4 +67,24 @@ export class CardComponent {
   /*   console.log('Édition de la carte:', this.card); */
     this.editCard.emit(this.card); // Émettre l'événement avec la carte à éditer
   }
+
+
+
+  getFlagColor(): string {
+    switch (this.card.priority) {
+      case 'high':
+        return 'text-red-500'; // Rouge pour haute priorité
+      case 'medium':
+        return 'text-yellow-500'; // Jaune pour priorité moyenne
+      case 'low':
+        return 'text-green-500'; // Vert pour basse priorité
+      default:
+        return 'text-gray-500'; // Couleur par défaut
+    }
+  }
+
+  formatDueDate(date: Date): string {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(date).toLocaleDateString(undefined, options);
+  }
 }

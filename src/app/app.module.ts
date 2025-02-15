@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,7 @@ import { ListDetailComponent } from './list-detail/list-detail.component';
 import { HomeComponent } from './home/home.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { CelebrationComponent } from './celebration/celebration.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ListDetailComponent,
     HomeComponent,
     ConfirmDialogComponent,
+    CelebrationComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -51,7 +53,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     MatDialogModule,
     MatButtonModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
 ],
   providers: [
     provideAnimationsAsync()

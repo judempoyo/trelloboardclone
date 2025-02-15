@@ -29,7 +29,7 @@ export class BoardService {
               labels: ['label1', 'label2'],
               dueDate: new Date('2023-12-31'),
               comments: [],
-              priority: 'high',
+              priority: 'medium',
               assignedTo: ['user1'],
               color: 'red',
               isCompleted: false
@@ -41,7 +41,7 @@ export class BoardService {
               labels: ['label3'],
               dueDate: new Date('2023-11-30'),
               comments: [],
-              priority: 'medium',
+              priority: 'high',
               assignedTo: [],
               color: 'green',
               isCompleted: false
