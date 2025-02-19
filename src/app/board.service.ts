@@ -3,10 +3,10 @@ import { Board, List, Card } from './models';
 
 @Injectable({ providedIn: 'root' })
 export class BoardService {
-  private boards: Board[] = []; // Stocker plusieurs tableaux
+  private boards: Board[] = []; 
 
   constructor() {
-    // Initialiser avec deux tableaux par défaut
+    
     this.boards.push(this.createDefaultBoard('1', 'Mon tableau Trello'));
     this.boards.push(this.createDefaultBoard('2', 'Mon deuxième tableau'));
   }
@@ -76,19 +76,19 @@ export class BoardService {
   }
 
   getBoards(): Board[] {
-    return this.boards; // Retourner tous les tableaux
+    return this.boards; 
   }
 
   getBoard(boardId: string): Board | undefined {
-    return this.boards.find(board => board.id === boardId); // Retourner un tableau par son ID
+    return this.boards.find(board => board.id === boardId); 
   }
 
   addBoard(newBoard: Board): void {
-    this.boards.push(newBoard); // Ajouter un nouveau tableau
+    this.boards.push(newBoard);
   }
 
   deleteBoard(boardId: string): void {
-    this.boards = this.boards.filter(board => board.id !== boardId); // Supprimer un tableau par son ID
+    this.boards = this.boards.filter(board => board.id !== boardId); 
   }
   setBoardToFavorite(boardId: string) {
     const board = this.getBoard(boardId);
@@ -110,7 +110,7 @@ export class BoardService {
     if (board) {
       const list = board.lists.find(l => l.id === listId);
       if (list) {
-        list.isCompleted = true; // Marquer la liste comme complète
+        list.isCompleted = true; 
       }
     }
   }
@@ -119,7 +119,7 @@ export class BoardService {
   addList(boardId: string, newList: List): void {
     const board = this.getBoard(boardId);
     if (board) {
-      board.lists.push(newList); // Ajouter une nouvelle liste au tableau
+      board.lists.push(newList); 
     }
   }
 
@@ -139,14 +139,14 @@ export class BoardService {
         title: `${originalList.title} (Copy)`,
         cards: [...originalList.cards]
       };
-      this.addList(boardId, copiedList); // Ajouter la liste copiée au tableau
-      return copiedList; // Retourner la liste copiée
+      this.addList(boardId, copiedList); 
+      return copiedList; 
     }
     return undefined;
   }
 
   private generateId(): string {
-    return Math.random().toString(36).substr(2, 9); // Génération d'un ID simple
+    return Math.random().toString(36).substr(2, 9); 
   }
 
   markCardAsComplete(boardId: string, cardId: string): void {
@@ -155,7 +155,7 @@ export class BoardService {
       for (const list of board.lists) {
  const card = list.cards.find(c => c.id === cardId);
         if (card) {
-          card.isCompleted = !card.isCompleted; // Inverser l'état de complétion de la carte
+          card.isCompleted = !card.isCompleted;
           break;
         }
       }
