@@ -5,11 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatChipsModule } from '@angular/material/chips'; 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,12 +53,14 @@ import { CelebrationComponent } from './celebration/celebration.component';
     DragDropModule,
     ReactiveFormsModule,
     FormsModule,
+    MatChipsModule,
     MatDialogModule,
     MatButtonModule,
     MatInputModule,
     MatCheckboxModule,
-    MatIconModule
-],
+    MatIconModule,
+    MatFormFieldModule,  
+      ],
   providers: [
     provideAnimationsAsync()
   ],
