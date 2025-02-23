@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
 
     addBoard() {
-      this.isAddingBoard = true; // Show the Board form
+      this.isAddingBoard = true;  
     }
 
     onBoardSave(board: Board) {
@@ -37,6 +37,6 @@ export class HomeComponent implements OnInit {
 
     onBoardCancel() {
 
-      this.isAddingBoard = false; // Hide the list form
+      this.isAddingBoard = false; 
     }
 }
