@@ -168,10 +168,10 @@ export class BoardService {
       for (const list of board.lists) {
         const card = list.cards.find(c => c.id === cardId);
         if (card) {
-          return card; // Retourner la carte par son ID
+          return card; 
         }
       }
     }
-    return undefined; // Retourner undefined si la carte n'est pas trouvée
+    return undefined; 
   }
 }
