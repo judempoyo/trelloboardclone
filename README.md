@@ -1,6 +1,6 @@
 # Trello Board Clone
 
-This project is a Trello clone developed with Angular. It allows managing tasks in boards and lists with various advanced features.
+This project is a Trello board clone developed with Angular. It allows managing tasks in boards and lists with various advanced features.
 
 ## 🚀 Features
 
